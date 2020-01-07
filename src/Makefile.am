@@ -37,8 +37,11 @@ endif
 
 ossfs_LDADD = $(DEPS_LIBS)
 
-noinst_PROGRAMS = test_string_util
+noinst_PROGRAMS = test_string_util string_util_fuzz
 
 test_string_util_SOURCES = string_util.cpp test_string_util.cpp test_util.h
+
+string_util_fuzz_SOURCES = string_util.cpp string_util_fuzz.cpp test_util.h
+string_util_fuzz_CXXFLAGS = $(CXXFLAGS) -fsanitize=address,fuzzer -fprofile-instr-generate -fcoverage-mapping
 
 TESTS = test_string_util
