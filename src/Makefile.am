@@ -37,11 +37,14 @@ endif
 
 ossfs_LDADD = $(DEPS_LIBS)
 
-noinst_PROGRAMS = test_string_util string_util_fuzz
+noinst_PROGRAMS = test_string_util string_util_fuzz_base64 string_util_fuzz_strtoofft
 
 test_string_util_SOURCES = string_util.cpp test_string_util.cpp test_util.h
 
-string_util_fuzz_SOURCES = string_util.cpp string_util_fuzz.cpp test_util.h
-string_util_fuzz_CXXFLAGS = $(CXXFLAGS) -fsanitize=address,fuzzer -fprofile-instr-generate -fcoverage-mapping
+string_util_fuzz_base64_SOURCES = string_util.cpp string_util_fuzz_base64.cpp test_util.h
+string_util_fuzz_base64_CXXFLAGS = $(CXXFLAGS) -fsanitize=address,fuzzer -fprofile-instr-generate -fcoverage-mapping
+
+string_util_fuzz_strtoofft_SOURCES = string_util.cpp string_util_fuzz_strtoofft.cpp test_util.h
+string_util_fuzz_strtoofft_CXXFLAGS = $(CXXFLAGS) -fsanitize=address,fuzzer -fprofile-instr-generate -fcoverage-mapping
 
 TESTS = test_string_util
